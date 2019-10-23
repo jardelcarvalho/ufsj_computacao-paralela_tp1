@@ -1,8 +1,8 @@
 // autor: Jardel Carvalho
 // ano: 2019
 
-#ifndef LEITURA_H
-#define LEITURA_H
+#ifndef _LEITURA_H_
+#define _LEITURA_H_
 
 #include <stdio.h>
 #include <stdlib.h>

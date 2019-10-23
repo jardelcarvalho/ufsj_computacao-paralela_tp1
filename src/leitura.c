@@ -48,6 +48,6 @@ float *matriz(char *caminho, int *N) {
             j = i + 1;
         }
     }
-
+    
     return m;
 }
