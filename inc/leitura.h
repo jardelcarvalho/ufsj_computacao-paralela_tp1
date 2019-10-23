@@ -1,3 +1,6 @@
+// autor: Jardel Carvalho
+// ano: 2019
+
 #ifndef LEITURA_H
 #define LEITURA_H
 
@@ -5,6 +8,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-int *matriz(char *caminho, int *N);
+float *matriz(char *caminho, int *N);
 
 #endif

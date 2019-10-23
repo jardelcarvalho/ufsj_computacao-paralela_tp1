@@ -1,11 +1,14 @@
+// autor: Jardel Carvalho
+// ano: 2019
+
 #include "leitura.h"
 
-int *matriz(char *caminho, int *N) {
-    int *m;
+float *matriz(char *caminho, int *N) {
+    float *m;
 
     FILE *f = fopen(caminho, "r");
     if(!f) {
-        printf("problema na leitura de %s", caminho);
+        printf("erro: problema na leitura de %s\n", caminho);
         return NULL;
     }
 
@@ -13,9 +16,10 @@ int *matriz(char *caminho, int *N) {
     fseek(f, 0L, SEEK_END);
     int n_bytes = ftell(f);
     rewind(f);
-    // salva o arquivo em um vetor
+    // lê o arquivo pra a memória
     char bytes[n_bytes + 1];
     fread(bytes, 1, n_bytes, f);
+    fclose(f);
     bytes[n_bytes] = '\0';
 
     // caminha até a primeira quebra de linha
@@ -24,25 +28,26 @@ int *matriz(char *caminho, int *N) {
     bytes[i] = '\0';
     i++;
     
-    // converte substring que contém o valor de N
-    // aloca a matriz
+    // converte substring que contém o valor de N para int
     *N = atoi(bytes);
-    m = malloc((*N * *N) * sizeof(int));
-    int k = 0;
+    // aloca a matriz
+    m = malloc((*N * *N) * sizeof(float));
+    if(!m) {
+        printf("erro: problema ao alocar matriz\n");
+        return NULL;
+    }
 
     // grava valores da matriz no vetor
-    int j = i;
+    int j = i, k = 0;
     for(; bytes[i] != '\0'; i++) {
         if(bytes[i] == ' ' || bytes[i] == '\n') {
             bytes[i] = '\0';
-            int v = atoi(bytes + j);
+            float v = atof(bytes + j);
             m[k] = v;
             k++;
             j = i + 1;
         }
     }
-    
-    fclose(f);
 
     return m;
 }
