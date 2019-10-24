@@ -30,14 +30,14 @@ float *submatriz(int rank, int N, int q, float *m) {
         int i = x_coord + y_coord + offset;
         int f = ((rank % q) + 1) * (N / q) + y_coord + offset;
         
-        for(int b = i; b < f; b++) printf("%.2f ", m[b]);
-        printf("\n");
+        // for(int b = i; b < f; b++) printf("%.2f ", m[b]);
+        // printf("\n");
         for(int t = i; t < f; t++) {
             sm[k] = m[t];
             k++;
         }
     }
-    printf("\n");
+    // printf("\n");
 
     return sm;
 }
