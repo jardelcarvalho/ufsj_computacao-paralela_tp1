@@ -1,110 +1,562 @@
-==3188== Memcheck, a memory error detector
-==3188== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==3188== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==3188== Command: ./main file/m.txt
-==3188== Parent PID: 2470
-==3188== 
---3188-- 
---3188-- Valgrind options:
---3188--    --leak-check=full
---3188--    --show-leak-kinds=all
---3188--    --track-origins=yes
---3188--    --verbose
---3188--    --log-file=valgrind_log/valgrind-out.txt
---3188-- Contents of /proc/version:
---3188--   Linux version 5.0.0-31-generic (buildd@lgw01-amd64-046) (gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04.1)) #33~18.04.1-Ubuntu SMP Tue Oct 1 10:20:39 UTC 2019
---3188-- 
---3188-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-avx-avx2-bmi
---3188-- Page sizes: currently 4096, max supported 4096
---3188-- Valgrind library directory: /usr/lib/valgrind
---3188-- Reading syms from /home/jardel/__projetos__/c_paralela_tp1/main
---3188-- Reading syms from /lib/x86_64-linux-gnu/ld-2.27.so
---3188--   Considering /lib/x86_64-linux-gnu/ld-2.27.so ..
---3188--   .. CRC mismatch (computed 1b7c895e wanted 2943108a)
---3188--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.27.so ..
---3188--   .. CRC is valid
---3188-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
---3188--   Considering /usr/lib/valgrind/memcheck-amd64-linux ..
---3188--   .. CRC mismatch (computed c25f395c wanted 0a9602a8)
---3188--    object doesn't have a symbol table
---3188--    object doesn't have a dynamic symbol table
---3188-- Scheduler: using generic scheduler lock implementation.
---3188-- Reading suppressions file: /usr/lib/valgrind/default.supp
-==3188== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-3188-by-jardel-on-???
-==3188== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-3188-by-jardel-on-???
-==3188== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-3188-by-jardel-on-???
-==3188== 
-==3188== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==3188== don't want to do, unless you know exactly what you're doing,
-==3188== or are doing some strange experiment):
-==3188==   /usr/lib/valgrind/../../bin/vgdb --pid=3188 ...command...
-==3188== 
-==3188== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==3188==   /path/to/gdb ./main
-==3188== and then give GDB the following command
-==3188==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=3188
-==3188== --pid is optional if only one valgrind process is running
-==3188== 
---3188-- REDIR: 0x401f2f0 (ld-linux-x86-64.so.2:strlen) redirected to 0x58060901 (???)
---3188-- REDIR: 0x401f0d0 (ld-linux-x86-64.so.2:index) redirected to 0x5806091b (???)
---3188-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
---3188--   Considering /usr/lib/valgrind/vgpreload_core-amd64-linux.so ..
---3188--   .. CRC mismatch (computed 4b63d83e wanted 670599e6)
---3188--    object doesn't have a symbol table
---3188-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
---3188--   Considering /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so ..
---3188--   .. CRC mismatch (computed a4b37bee wanted 8ad4dc94)
---3188--    object doesn't have a symbol table
-==3188== WARNING: new redirection conflicts with existing -- ignoring it
---3188--     old: 0x0401f2f0 (strlen              ) R-> (0000.0) 0x58060901 ???
---3188--     new: 0x0401f2f0 (strlen              ) R-> (2007.0) 0x04c32db0 strlen
---3188-- REDIR: 0x401d360 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4c33ee0 (strcmp)
---3188-- REDIR: 0x401f830 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4c374f0 (mempcpy)
---3188-- Reading syms from /lib/x86_64-linux-gnu/libc-2.27.so
---3188--   Considering /lib/x86_64-linux-gnu/libc-2.27.so ..
---3188--   .. CRC mismatch (computed b1c74187 wanted 042cc048)
---3188--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.27.so ..
---3188--   .. CRC is valid
---3188-- REDIR: 0x4edac70 (libc.so.6:memmove) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4ed9d40 (libc.so.6:strncpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4edaf50 (libc.so.6:strcasecmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4ed9790 (libc.so.6:strcat) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4ed9d70 (libc.so.6:rindex) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4edc7c0 (libc.so.6:rawmemchr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4edade0 (libc.so.6:mempcpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4edac10 (libc.so.6:bcmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4ed9d00 (libc.so.6:strncmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4ed9800 (libc.so.6:strcmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4edad40 (libc.so.6:memset) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4ef80f0 (libc.so.6:wcschr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4ed9ca0 (libc.so.6:strnlen) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4ed9870 (libc.so.6:strcspn) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4edafa0 (libc.so.6:strncasecmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4ed9840 (libc.so.6:strcpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4edb0e0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4ed9da0 (libc.so.6:strpbrk) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4ed97c0 (libc.so.6:index) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4ed9c70 (libc.so.6:strlen) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4ee46c0 (libc.so.6:memrchr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4edaff0 (libc.so.6:strcasecmp_l) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4edabe0 (libc.so.6:memchr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4ef8eb0 (libc.so.6:wcslen) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4eda050 (libc.so.6:strspn) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4edaf20 (libc.so.6:stpncpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4edaef0 (libc.so.6:stpcpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4edc7f0 (libc.so.6:strchrnul) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4edb040 (libc.so.6:strncasecmp_l) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
---3188-- REDIR: 0x4fca3c0 (libc.so.6:__strrchr_avx2) redirected to 0x4c32730 (rindex)
---3188-- REDIR: 0x4ed3070 (libc.so.6:malloc) redirected to 0x4c2faa0 (malloc)
---3188-- REDIR: 0x4eda590 (libc.so.6:__GI_strstr) redirected to 0x4c37760 (__strstr_sse2)
---3188-- REDIR: 0x4ed3950 (libc.so.6:free) redirected to 0x4c30cd0 (free)
---3188-- REDIR: 0x4fcaad0 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x4c366e0 (memmove)
-==3188== 
-==3188== HEAP SUMMARY:
-==3188==     in use at exit: 0 bytes in 0 blocks
-==3188==   total heap usage: 3 allocs, 3 frees, 4,792 bytes allocated
-==3188== 
-==3188== All heap blocks were freed -- no leaks are possible
-==3188== 
-==3188== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==3188== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==31190== Memcheck, a memory error detector
+==31190== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==31190== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==31190== Command: ./main file/m.txt
+==31190== Parent PID: 4945
+==31190== 
+--31190-- 
+--31190-- Valgrind options:
+--31190--    --leak-check=full
+--31190--    --show-leak-kinds=all
+--31190--    --track-origins=yes
+--31190--    --verbose
+--31190--    --log-file=valgrind_log/valgrind-out.txt
+--31190-- Contents of /proc/version:
+--31190--   Linux version 5.0.0-32-generic (buildd@lgw01-amd64-015) (gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04.1)) #34~18.04.2-Ubuntu SMP Thu Oct 10 10:36:02 UTC 2019
+--31190-- 
+--31190-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-avx-avx2-bmi
+--31190-- Page sizes: currently 4096, max supported 4096
+--31190-- Valgrind library directory: /usr/lib/valgrind
+--31190-- Reading syms from /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main
+--31190-- Reading syms from /lib/x86_64-linux-gnu/ld-2.27.so
+--31190--   Considering /lib/x86_64-linux-gnu/ld-2.27.so ..
+--31190--   .. CRC mismatch (computed 1b7c895e wanted 2943108a)
+--31190--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.27.so ..
+--31190--   .. CRC is valid
+--31190-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
+--31190--   Considering /usr/lib/valgrind/memcheck-amd64-linux ..
+--31190--   .. CRC mismatch (computed c25f395c wanted 0a9602a8)
+--31190--    object doesn't have a symbol table
+--31190--    object doesn't have a dynamic symbol table
+--31190-- Scheduler: using generic scheduler lock implementation.
+--31190-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==31190== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-31190-by-jardel-on-???
+==31190== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-31190-by-jardel-on-???
+==31190== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-31190-by-jardel-on-???
+==31190== 
+==31190== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==31190== don't want to do, unless you know exactly what you're doing,
+==31190== or are doing some strange experiment):
+==31190==   /usr/lib/valgrind/../../bin/vgdb --pid=31190 ...command...
+==31190== 
+==31190== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==31190==   /path/to/gdb ./main
+==31190== and then give GDB the following command
+==31190==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=31190
+==31190== --pid is optional if only one valgrind process is running
+==31190== 
+--31190-- REDIR: 0x401f2f0 (ld-linux-x86-64.so.2:strlen) redirected to 0x58060901 (???)
+--31190-- REDIR: 0x401f0d0 (ld-linux-x86-64.so.2:index) redirected to 0x5806091b (???)
+--31190-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
+--31190--   Considering /usr/lib/valgrind/vgpreload_core-amd64-linux.so ..
+--31190--   .. CRC mismatch (computed 4b63d83e wanted 670599e6)
+--31190--    object doesn't have a symbol table
+--31190-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
+--31190--   Considering /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so ..
+--31190--   .. CRC mismatch (computed a4b37bee wanted 8ad4dc94)
+--31190--    object doesn't have a symbol table
+==31190== WARNING: new redirection conflicts with existing -- ignoring it
+--31190--     old: 0x0401f2f0 (strlen              ) R-> (0000.0) 0x58060901 ???
+--31190--     new: 0x0401f2f0 (strlen              ) R-> (2007.0) 0x04c32db0 strlen
+--31190-- REDIR: 0x401d360 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4c33ee0 (strcmp)
+--31190-- REDIR: 0x401f830 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4c374f0 (mempcpy)
+--31190-- Reading syms from /lib/x86_64-linux-gnu/libm-2.27.so
+--31190--   Considering /lib/x86_64-linux-gnu/libm-2.27.so ..
+--31190--   .. CRC mismatch (computed 7feae033 wanted b29b2508)
+--31190--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libm-2.27.so ..
+--31190--   .. CRC is valid
+--31190-- Reading syms from /lib/x86_64-linux-gnu/libc-2.27.so
+--31190--   Considering /lib/x86_64-linux-gnu/libc-2.27.so ..
+--31190--   .. CRC mismatch (computed b1c74187 wanted 042cc048)
+--31190--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.27.so ..
+--31190--   .. CRC is valid
+--31190-- REDIR: 0x5278c70 (libc.so.6:memmove) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5277d40 (libc.so.6:strncpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5278f50 (libc.so.6:strcasecmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5277790 (libc.so.6:strcat) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5277d70 (libc.so.6:rindex) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x527a7c0 (libc.so.6:rawmemchr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5278de0 (libc.so.6:mempcpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5278c10 (libc.so.6:bcmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5277d00 (libc.so.6:strncmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5277800 (libc.so.6:strcmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5278d40 (libc.so.6:memset) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x52960f0 (libc.so.6:wcschr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5277ca0 (libc.so.6:strnlen) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5277870 (libc.so.6:strcspn) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5278fa0 (libc.so.6:strncasecmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5277840 (libc.so.6:strcpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x52790e0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5277da0 (libc.so.6:strpbrk) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x52777c0 (libc.so.6:index) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5277c70 (libc.so.6:strlen) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x52826c0 (libc.so.6:memrchr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5278ff0 (libc.so.6:strcasecmp_l) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5278be0 (libc.so.6:memchr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5296eb0 (libc.so.6:wcslen) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5278050 (libc.so.6:strspn) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5278f20 (libc.so.6:stpncpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5278ef0 (libc.so.6:stpcpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x527a7f0 (libc.so.6:strchrnul) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x5279040 (libc.so.6:strncasecmp_l) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--31190-- REDIR: 0x53683c0 (libc.so.6:__strrchr_avx2) redirected to 0x4c32730 (rindex)
+--31190-- REDIR: 0x5271070 (libc.so.6:malloc) redirected to 0x4c2faa0 (malloc)
+--31190-- REDIR: 0x5278590 (libc.so.6:__GI_strstr) redirected to 0x4c37760 (__strstr_sse2)
+--31190-- REDIR: 0x5271950 (libc.so.6:free) redirected to 0x4c30cd0 (free)
+--31190-- REDIR: 0x5368ad0 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x4c366e0 (memmove)
+--31190-- REDIR: 0x5368590 (libc.so.6:__strlen_avx2) redirected to 0x4c32cf0 (strlen)
+--31190-- REDIR: 0x53681d0 (libc.so.6:__strchrnul_avx2) redirected to 0x4c37020 (strchrnul)
+--31190-- REDIR: 0x5368ab0 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4c37130 (mempcpy)
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x52391B8: __printf_fp_l (printf_fp.c:392)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x52391D9: __printf_fp_l (printf_fp.c:392)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x522EA30: __mpn_extract_double (dbl2mpn.c:56)
+==31190==    by 0x5239208: __printf_fp_l (printf_fp.c:392)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x522EA35: __mpn_extract_double (dbl2mpn.c:60)
+==31190==    by 0x5239208: __printf_fp_l (printf_fp.c:392)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x5239B1D: __printf_fp_l (printf_fp.c:974)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x5239B3E: __printf_fp_l (printf_fp.c:977)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x523AC3D: __printf_fp_l (printf_fp.c:987)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x523AC58: __printf_fp_l (printf_fp.c:987)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x523A2CC: round_away (rounding-mode.h:52)
+==31190==    by 0x523A2CC: __printf_fp_l (printf_fp.c:994)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x5239CB1: __printf_fp_l (printf_fp.c:1162)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x5239DA4: __printf_fp_l (printf_fp.c:1169)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x523A89A: __printf_fp_l (printf_fp.c:1225)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x523A87B: __printf_fp_l (printf_fp.c:1227)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x526732D: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:789)
+==31190==    by 0x523AB94: __printf_fp_l (printf_fp.c:1251)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x526735A: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:797)
+==31190==    by 0x523AB94: __printf_fp_l (printf_fp.c:1251)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x523AB98: __printf_fp_l (printf_fp.c:1251)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== Syscall param write(buf) points to uninitialised byte(s)
+==31190==    at 0x52EA154: write (write.c:27)
+==31190==    by 0x52651BC: _IO_file_write@@GLIBC_2.2.5 (fileops.c:1203)
+==31190==    by 0x5266F50: new_do_write (fileops.c:457)
+==31190==    by 0x5266F50: _IO_do_write@@GLIBC_2.2.5 (fileops.c:433)
+==31190==    by 0x5267402: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:798)
+==31190==    by 0x525C8F4: putchar (putchar.c:28)
+==31190==    by 0x108FD2: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Address 0x55cc4fc is 12 bytes inside a block of size 1,024 alloc'd
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x525818B: _IO_file_doallocate (filedoalloc.c:101)
+==31190==    by 0x5268378: _IO_doallocbuf (genops.c:365)
+==31190==    by 0x5267497: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:759)
+==31190==    by 0x523AB94: __printf_fp_l (printf_fp.c:1251)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BAE: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== 
+==31190== HEAP SUMMARY:
+==31190==     in use at exit: 0 bytes in 0 blocks
+==31190==   total heap usage: 13 allocs, 13 frees, 6,320 bytes allocated
+==31190== 
+==31190== All heap blocks were freed -- no leaks are possible
+==31190== 
+==31190== ERROR SUMMARY: 22 errors from 17 contexts (suppressed: 0 from 0)
+==31190== 
+==31190== 1 errors in context 1 of 17:
+==31190== Syscall param write(buf) points to uninitialised byte(s)
+==31190==    at 0x52EA154: write (write.c:27)
+==31190==    by 0x52651BC: _IO_file_write@@GLIBC_2.2.5 (fileops.c:1203)
+==31190==    by 0x5266F50: new_do_write (fileops.c:457)
+==31190==    by 0x5266F50: _IO_do_write@@GLIBC_2.2.5 (fileops.c:433)
+==31190==    by 0x5267402: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:798)
+==31190==    by 0x525C8F4: putchar (putchar.c:28)
+==31190==    by 0x108FD2: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Address 0x55cc4fc is 12 bytes inside a block of size 1,024 alloc'd
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x525818B: _IO_file_doallocate (filedoalloc.c:101)
+==31190==    by 0x5268378: _IO_doallocbuf (genops.c:365)
+==31190==    by 0x5267497: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:759)
+==31190==    by 0x523AB94: __printf_fp_l (printf_fp.c:1251)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BAE: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== 
+==31190== 1 errors in context 2 of 17:
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x5239DA4: __printf_fp_l (printf_fp.c:1169)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== 
+==31190== 1 errors in context 3 of 17:
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x5239CB1: __printf_fp_l (printf_fp.c:1162)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== 
+==31190== 1 errors in context 4 of 17:
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x523A2CC: round_away (rounding-mode.h:52)
+==31190==    by 0x523A2CC: __printf_fp_l (printf_fp.c:994)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== 
+==31190== 1 errors in context 5 of 17:
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x523AC58: __printf_fp_l (printf_fp.c:987)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== 
+==31190== 1 errors in context 6 of 17:
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x523AC3D: __printf_fp_l (printf_fp.c:987)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== 
+==31190== 1 errors in context 7 of 17:
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x5239B3E: __printf_fp_l (printf_fp.c:977)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== 
+==31190== 1 errors in context 8 of 17:
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x5239B1D: __printf_fp_l (printf_fp.c:974)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== 
+==31190== 1 errors in context 9 of 17:
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x522EA35: __mpn_extract_double (dbl2mpn.c:60)
+==31190==    by 0x5239208: __printf_fp_l (printf_fp.c:392)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== 
+==31190== 1 errors in context 10 of 17:
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x522EA30: __mpn_extract_double (dbl2mpn.c:56)
+==31190==    by 0x5239208: __printf_fp_l (printf_fp.c:392)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== 
+==31190== 1 errors in context 11 of 17:
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x52391D9: __printf_fp_l (printf_fp.c:392)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== 
+==31190== 1 errors in context 12 of 17:
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x52391B8: __printf_fp_l (printf_fp.c:392)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== 
+==31190== 2 errors in context 13 of 17:
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x523AB98: __printf_fp_l (printf_fp.c:1251)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== 
+==31190== 2 errors in context 14 of 17:
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x526735A: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:797)
+==31190==    by 0x523AB94: __printf_fp_l (printf_fp.c:1251)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== 
+==31190== 2 errors in context 15 of 17:
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x526732D: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:789)
+==31190==    by 0x523AB94: __printf_fp_l (printf_fp.c:1251)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== 
+==31190== 2 errors in context 16 of 17:
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x523A87B: __printf_fp_l (printf_fp.c:1227)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== 
+==31190== 2 errors in context 17 of 17:
+==31190== Conditional jump or move depends on uninitialised value(s)
+==31190==    at 0x523A89A: __printf_fp_l (printf_fp.c:1225)
+==31190==    by 0x5236A06: vfprintf (vfprintf.c:1642)
+==31190==    by 0x523EF25: printf (printf.c:33)
+==31190==    by 0x108FBC: submatriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108BDB: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==  Uninitialised value was created by a heap allocation
+==31190==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31190==    by 0x108DC1: matriz (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190==    by 0x108B66: main (in /home/jardel/__projetos__/ufsj_computacao-paralela_tp1/main)
+==31190== 
+==31190== ERROR SUMMARY: 22 errors from 17 contexts (suppressed: 0 from 0)

@@ -6,7 +6,9 @@
 #include <math.h>
 
 #include "mpi.h"
+
 #include "leitura.h"
+#include "matriz_tr.h"
 
 // valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind_log/valgrind-out.txt ./obj/main file/m.txt 
 
@@ -30,17 +32,18 @@ int main(int argc, char **argv) {
     int num_procs;
     int my_rank;
 
-    MPI_Init(&argc, &argv);
-    MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
-    MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
+    // MPI_Init(&argc, &argv);
+    // MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
+    // MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
 
     float *sm;
 
+    my_rank = 0, num_procs = 9; //apagar depois
     if(my_rank == 0) {
         int N;
         float *m = matriz(argv[1], &N);
         if(!m) {
-            MPI_Finalize();
+            // MPI_Finalize();
             return 0;
         }
         int k = N * N;
@@ -51,36 +54,36 @@ int main(int argc, char **argv) {
             no sistema, deve existir um inteiro Q tal que P = Q^2 e N mod Q = 0 
         */
         int q = sqrt(num_procs);
-        if(!(q * q == num_procs && N % q == 0)) {
-            printf("erro: matriz inapropriada para o número de processos");
-            MPI_Finalize();
-            return 0;
-        }
+        // if(!(q * q == num_procs && N % q == 0)) {
+        //     printf("erro: matriz inapropriada para o número de processos\n");
+        //     MPI_Finalize();
+        //     return 0;
+        // }
 
         // envia submatrizes para os demais processos
-        int j = 0;
+        sm = submatriz(0, N, q, m);
+        free(sm);
         for(int i = 1; i < num_procs; i++) {
-            int k = i % N;
-            int i = k * N 
-            if(i % q == 0) {
-                j++;
+            float *sm = submatriz(i, N, q, m);
+            if(!sm) {
+                printf("erro: subdivisão de matriz\n");
+                // MPI_Finalize();
+                return 0;
             }
-            
-            // j = ?
-            // (id % q) * (N / q) + N * l + j * (N * q)
-            // ((id % q) + 1) * (N / q) + N * l + j * (N * q)
+            //printf("\n");
+            free(sm);
         }
 
 
         // desaloca matriz
         free(m);
     } else {
-        printf("Sou o %d\n", my_rank);
+        //printf("Sou o %d\n", my_rank);
         
     }
 
 
-    MPI_Finalize();
+    // MPI_Finalize();
 
     return 0;
 }

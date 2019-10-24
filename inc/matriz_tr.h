@@ -4,6 +4,10 @@
 #ifndef _MATRIZ_TR_H_ 
 #define _MATRIZ_TR_H_ 
 
-float *submatriz(int p_rank, float *m, int N);
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+float *submatriz(int rank, int N, int q, float *m);
 
 #endif
