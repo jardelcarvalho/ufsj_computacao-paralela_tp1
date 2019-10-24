@@ -75,8 +75,6 @@ int main(int argc, char **argv) {
                 MPI_Finalize();
                 return 0;
             }
-            int v = 0;
-            while(v < 10000000) v++;
             // enviando
             MPI_Send(&t, 1, MPI_FLOAT, i, 0, MPI_COMM_WORLD);
             MPI_Send(sm, t, MPI_FLOAT, i, 0, MPI_COMM_WORLD);
@@ -124,7 +122,7 @@ int main(int argc, char **argv) {
             MPI_Finalize();
             return 0;
         }
-
+        // 
         // entrar nas rotinas do floyd warshall
         // ...
         // ...
