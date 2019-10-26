@@ -1,7 +1,7 @@
 // autor: Jardel Carvalho
 // ano: 2019
 
-#include "fox_floyd_warshall.h"
+#include "floyd_warshall_mmult.h"
 
 void inicia_matriz_fl_war(float *m, int N) {
     for(int i = 0; i < N; i++) {
@@ -19,18 +19,17 @@ void inicia_matriz_fl_war(float *m, int N) {
 }
 
 
-void fox_floyd_warshall(float *my_m, float *rcvd_m, float *fwres_m, int N) {
-    float s;
+void fox_floyd_warshall(float *m_a, float *m_b, float *m_res, int N) {
+    float s, d;
     for(int i = 0; i < N; i++) {
         for(int j = 0; j < N; j++) {
 
-            // posição da matriz de resultado recebe infinito
-            fwres_m[j + i * N] = INFINITY;
-
+            d = m_res[j + i * N];
             for(int k = 0; k < N; k++) {
-                s = rcvd_m[k + i * N] + my_m[j + k * N];
-                if(fwres_m[j + i * N] > s) {
-                    fwres_m[j + i * N] = s;
+                s = m_a[k + i * N] + m_b[j + k * N];
+                if(d > s) {
+                    m_res[j + i * N] = s;
+                    d = s;
                 }
             }
         }
