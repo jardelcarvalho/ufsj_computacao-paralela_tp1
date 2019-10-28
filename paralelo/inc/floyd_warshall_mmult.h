@@ -8,6 +8,6 @@
 #include <math.h>
 
 void inicia_matriz_fl_war(float *m, int N);
-void fox_floyd_warshall(float *m_a, float *m_b, float *m_res, int N);
+void floyd_warshall_mmult(float *m_a, float *m_b, float *m_res, int N);
 
 #endif

@@ -2,14 +2,14 @@ CC = mpicc
 A = gcc
 FLAGS = -lm
 
-all: dir_obj main.o leitura.o matriz_tr.o floyd_warshall_mmult.o
-	$(CC) -o main obj/main.o obj/leitura.o obj/matriz_tr.o obj/floyd_warshall_mmult.o $(FLAGS)
+all: dir_obj main.o arquivo.o matriz_tr.o floyd_warshall_mmult.o
+	$(CC) -o main obj/main.o obj/arquivo.o obj/matriz_tr.o obj/floyd_warshall_mmult.o $(FLAGS)
 
 main.o: src/main.c
 	$(CC) -c src/main.c -Iinc -o obj/main.o $(FLAGS)
 
-leitura.o: src/leitura.c
-	$(CC) -c src/leitura.c -Iinc -o obj/leitura.o
+arquivo.o: src/arquivo.c
+	$(CC) -c src/arquivo.c -Iinc -o obj/arquivo.o $(FLAGS)
 
 matriz_tr.o: src/matriz_tr.c inc/matriz_tr.h
 	$(CC) -c src/matriz_tr.c -Iinc -o obj/matriz_tr.o

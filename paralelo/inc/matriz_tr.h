@@ -10,5 +10,6 @@
 
 float *submatriz(int rank, int N, int q, float *m);
 void encaixa(float *rcvd_m, float *m, int N, int q, int rank);
+void print_m(float *m_, int N);
 
 #endif

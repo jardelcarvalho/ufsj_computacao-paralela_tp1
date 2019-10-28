@@ -1,7 +1,7 @@
 // autor: Jardel Carvalho
 // ano: 2019
 
-#include "leitura.h"
+#include "arquivo.h"
 
 float *matriz(char *caminho, int *N) {
     float *m;
@@ -50,4 +50,30 @@ float *matriz(char *caminho, int *N) {
     }
     
     return m;
+}
+
+void escreve_matriz(float *m, int N, char *caminho) {
+    FILE *f = fopen(caminho, "w");
+    if(!f) {
+        printf("erro: problema na escrita em %s\n", caminho);
+        return;
+    }
+
+    fprintf(f, "%d\n", N);
+    for(int i = 0; i < N; i++) {
+        for(int j = 0; j < N; j++) {
+            if(m[j + i * N] == INFINITY) {
+                m[j + i * N] = .0;
+            }
+            fprintf(f, "%d", (int) m[j + i * N]);
+            if(j != N - 1) {
+                fprintf(f, " ");
+            }
+        }
+        if(i != N - 1) {
+            fprintf(f, "\n");
+        }
+    }
+
+    fclose(f);
 }

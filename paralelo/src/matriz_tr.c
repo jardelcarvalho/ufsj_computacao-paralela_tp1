@@ -60,3 +60,13 @@ void encaixa(float *rcvd_m, float *m, int N, int q, int rank) {
         }
     }
 }
+
+void print_m(float *m_, int N) {
+    for(int i = 0; i < N * N; i++) {
+        printf("%.2f ", m_[i]);
+        if((i + 1) % N == 0) {
+            printf("\n");
+            continue;
+        }
+    }
+}

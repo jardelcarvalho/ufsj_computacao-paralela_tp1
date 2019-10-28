@@ -7,26 +7,12 @@
 
 #include "mpi.h"
 
-#include "leitura.h"
+#include "arquivo.h"
 #include "matriz_tr.h"
 #include "floyd_warshall_mmult.h"
 
 #define P_MASTER_RANK 0
 
-// valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind_log/valgrind-out.txt ./obj/main file/m.txt 
-// mpirun --oversubscribe -np 4 main file/m.txt
-
-// teste
-void print_m(int rank, float *m_, int N) {
-    printf("\n%d\n", rank);
-    for(int i = 0; i < N * N; i++) {
-        printf("%.2f ", m_[i]);
-        if((i + 1) % N == 0) {
-            printf("\n");
-            continue;
-        }
-    }
-}
 
 int main(int argc, char **argv) {
     if(argc != 2) {
@@ -37,6 +23,8 @@ int main(int argc, char **argv) {
     int num_procs;
     int my_rank;
 
+    double t_ini;
+
     MPI_Init(&argc, &argv);
     MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
     MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
@@ -45,11 +33,14 @@ int main(int argc, char **argv) {
 
     if(my_rank == P_MASTER_RANK) {
         int N;
-        float *m = matriz(argv[1], &N);
+        float *m = le_matriz(argv[1], &N);
         if(!m) {
             MPI_Finalize();
             exit(EXIT_FAILURE);
         }
+        
+        // inicia medição do tempo
+        t_ini = MPI_Wtime();
 
         // condição para uso do algoritmo de Fox
         if(!(q * q == num_procs && N % q == 0)) {
@@ -112,9 +103,27 @@ int main(int argc, char **argv) {
     float *m_a = malloc(t * sizeof(float));
     float *m_b = malloc(t * sizeof(float));
     float *m_res = malloc(t * sizeof(float));
-    if(!m_a || !m_b || !m_res) { // TODO: resolver esses frees
-        printf("erro: problema ao alocar matrizes auxiliares\n");
+    if(!m_a) {
+        printf("erro: problema ao alocar matriz a\n");
         free(my_sm);
+        free(m_b);
+        free(m_res);
+        MPI_Finalize();
+        exit(EXIT_FAILURE);
+    }
+    if(!m_b) {
+        printf("erro: problema ao alocar mat b\n");
+        free(my_sm);
+        free(m_res);
+        free(m_a);
+        MPI_Finalize();
+        exit(EXIT_FAILURE);
+    }
+    if(!m_res) {
+        printf("erro: problema ao alocar matriz resultado\n");
+        free(my_sm);
+        free(m_b);
+        free(m_a);
         MPI_Finalize();
         exit(EXIT_FAILURE);
     }
@@ -145,22 +154,14 @@ int main(int argc, char **argv) {
             MPI_Recv(m_a, t, MPI_FLOAT, r * q + u, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
             // Floyd-Warshall
-            fox_floyd_warshall(m_a, m_b , m_res, sm_dim);
+            floyd_warshall_mmult(m_a, m_b , m_res, sm_dim);
 
             // envia própria matriz para processo da linha de cima
             MPI_Send(m_b, t, MPI_FLOAT, rank_acima, 0, MPI_COMM_WORLD);
 
             // recebe matriz do processo da linha de baixo
             MPI_Recv(m_b, t, MPI_FLOAT, rank_abaixo, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-
-            // if(u == my_rank % q)
-            // printf("rank: %d\nintervalo: %d <= %d < %d\nenviou: sim\nrecebeu de: %d\nrank acima: %d\nrank abaixo: %d\n\n",
-            // my_rank, q * r, my_rank, q * r + q, r * q + u, rank_acima, rank_abaixo);
-            // else
-            // printf("rank: %d\nintervalo: %d <= %d < %d\nenviou: não\nrecebeu de: %d\nrank acima: %d\nrank abaixo: %d\n\n",
-            // my_rank, q * r, my_rank, q * r + q, r * q + u, rank_acima, rank_abaixo);
         }
-        // break;
 
         for(int i = 0; i < t; i++) {
             my_sm[i] = m_res[i];
@@ -185,12 +186,17 @@ int main(int argc, char **argv) {
         for(int p = 0; p < num_procs; p++) {
             MPI_Recv(m_res, t, MPI_FLOAT, p, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             encaixa(m_res, m, N, q, p);
-            // print_m(p, m_res, sqrt(t));
-            // printf("\n");
         }
-        print_m(my_rank, m, N);
+
+        // encerra a contagem do tempo
+        double t_fim = MPI_Wtime();
+
+        // imprime matriz
+        print_m(m, N);
         printf("\n");
-        
+
+	printf("t = %.15lfs\n", t_fim - t_ini);	
+
         free(m);
     }
 
