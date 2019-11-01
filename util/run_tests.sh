@@ -1,6 +1,6 @@
 #/bin/bash
 
-cd ../sequencial
+cd ../floyd-warshall_fox_openmpi
 
 make
 
@@ -8,26 +8,19 @@ for mat in "$matrizes"../util/mat/*
 do
     for i in {1..10}
     do
-    ./main $mat
+	echo $mat "i="$i", p = 1"
+        mpirun -np 1 -hostfile ../util/hostfile main $mat
+        echo $mat "i="$i", p = 4"
+        mpirun -np 4 -hostfile ../util/hostfile main $mat
+        echo $mat "i="$i", p = 9"
+        mpirun -np 9 -hostfile ../util/hostfile main $mat
+        echo "/"
     done
 done
 
 make clean
 
-cd ../paralelo
 
-make
-
-for mat in "$matrizes"../util/mat/*
-do
-    for i in {1..10}
-    do
-        mpirun -np 4 -f ../util/hostfile main $mat
-        mpirun -np 9 -f ../util/hostfile main $mat
-    done
-done
-
-make clean
 
 echo "terminou"
 
